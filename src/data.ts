@@ -35,8 +35,8 @@ export const SKILL_CATEGORIES = [
     skills: ["Figma", "CorelDRAW", "Canva", "Adobe Premiere", "CapCut"],
   },
   {
-    title: "Frontend Development",
-    skills: ["HTML5", "CSS3", "JavaScript", "PHP", "Flutter", "Python"],
+    title: "Development Tools",
+    skills: ["HTML5", "CSS3", "JavaScript", "React", "TypeScript", "Tailwind CSS", "SQLite", "Flutter", "Python", "Firebase"],
   },
   {
     title: "Methodologies",
