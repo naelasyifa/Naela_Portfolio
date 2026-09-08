@@ -4,10 +4,10 @@
  */
 
 import React from "react";
-import { Linkedin, Mail, Globe, ChevronRight, FileText } from "lucide-react";
+import { Linkedin, Mail, ChevronRight, FileText } from "lucide-react";
 import { PERSONAL_INFO } from "../data";
 
-const AVATAR_PATH = "/src/assets/images/foto2.jpeg";
+import AVATAR_PATH from "/src/assets/images/foto2.jpeg";
 
 interface HeroProps {
   onDownloadCV: () => void;
@@ -84,7 +84,7 @@ export default function Hero({ onDownloadCV }: HeroProps) {
                   <Mail className="w-4 h-4" />
                 </a>
 
-                <a
+                {/* <a
                   id="hero-portfolio"
                   href={`https://${PERSONAL_INFO.portfolioUrl}`}
                   target="_blank"
@@ -93,7 +93,7 @@ export default function Hero({ onDownloadCV }: HeroProps) {
                   title="Design Case Studies Portfolio"
                 >
                   <Globe className="w-4 h-4" />
-                </a>
+                </a> */}
               </div>
             </div>
           </div>

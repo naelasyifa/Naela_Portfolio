@@ -7,7 +7,7 @@ import React from "react";
 import { Palette, Cpu, Award, ExternalLink } from "lucide-react";
 import { PERSONAL_INFO } from "../data";
 
-const ABOUT_PHOTO = "/src/assets/images/foto3.jpeg";
+import ABOUT_PHOTO from "../assets/images/foto3.jpeg";
 
 export default function About() {
   return (
