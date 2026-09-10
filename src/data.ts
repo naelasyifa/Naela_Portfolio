@@ -26,6 +26,7 @@ export const PERSONAL_INFO = {
   linkedin: "naela-syifa-212254330",
   portfolioUrl: "bit.ly/3VE1ySF",
   linkedinUrl: "https://www.linkedin.com/in/naela-syifa-212254330",
+  cvUrl: "https://drive.google.com/uc?export=download&id=1eQwOThKlvrbVmedTiFylTR4Yd3rY2boM",
   bio: "Naela Syifa is a D3 Informatics Engineering graduate with experience as a UI/UX Designer and Fullstack Developer at PT Data Andalan Utama. Passionate about creating user-centered digital products, she specializes in transforming complex problems into intuitive, aesthetic, and impactful solutions.",
 };
 
