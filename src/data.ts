@@ -26,7 +26,7 @@ export const PERSONAL_INFO = {
   linkedin: "naela-syifa-212254330",
   portfolioUrl: "bit.ly/3VE1ySF",
   linkedinUrl: "https://www.linkedin.com/in/naela-syifa-212254330",
-  cvUrl: "https://drive.google.com/uc?export=download&id=1eQwOThKlvrbVmedTiFylTR4Yd3rY2boM",
+  cvUrl: "https://drive.google.com/uc?export=download&id=1S1KdJg6od8pPDuejW_nAYTlMj7v0Lk9H",
   bio: "Naela Syifa is a D3 Informatics Engineering graduate with experience as a UI/UX Designer and Fullstack Developer at PT Data Andalan Utama. Passionate about creating user-centered digital products, she specializes in transforming complex problems into intuitive, aesthetic, and impactful solutions.",
 };
 
@@ -109,6 +109,14 @@ export const CERTIFICATIONS: Certification[] = [
   },
   {
     id: "cert-6",
+    title: "GuardianWalk — 1st Place, KMIPN VIII 2026",
+    issuer: "Politeknik Negeri Ujung Pandang (KMIPN VIII)",
+    isVerified: true,
+    year: "2026",
+    credentialUrl: "https://drive.google.com/file/d/1tCe-ugefFjBtUGcLg0cQdOppJEh1tVqU/view?usp=sharing",
+  },
+  {
+    id: "cert-7",
     title: "MikroTik Certified Network Associate (MTCNA)",
     issuer: "MikroTik (Mikrotikls SIA)",
     isVerified: true,
