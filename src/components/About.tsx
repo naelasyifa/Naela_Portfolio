@@ -4,8 +4,7 @@
  */
 
 import React from "react";
-import { Palette, Cpu, Award, ExternalLink } from "lucide-react";
-import { PERSONAL_INFO } from "../data";
+import { Palette, Cpu, Award, Trophy } from "lucide-react";
 
 import ABOUT_PHOTO from "../assets/images/foto3.jpeg";
 
@@ -56,12 +55,11 @@ export default function About() {
                 Where Design Thinking Meets <span className="text-[#7EC8FF] italic">Clean</span> Code
               </h3>
               <p className="text-gray-600 font-sans text-base leading-relaxed">
-                Naela Syifa is a D3 Informatics Engineering graduate with experience as a UI/UX Designer and Fullstack Developer at PT Data Andalan Utama. Passionate about creating user-centered digital products, she specializes in
-                transforming complex problems into intuitive, aesthetic, and impactful solutions.
+                I'm a D3 Informatics Engineering graduate who worked as a UI/UX Designer and Full-Stack Developer intern at PT Data Andalan Utama. I enjoy building user-centered digital products, from user flows and wireframes in Figma to
+                working interfaces in code.
               </p>
               <p className="text-gray-600 font-sans text-base leading-relaxed">
-                As a graduate of Informatics Engineering, I don't just stop at designing beautiful mockups in Figma. I write modular, well-tested code to bring those experiences into fully realized products that communicate with backends
-                and scale efficiently.
+                I don't stop at designing mockups. I turn them into responsive front-end interfaces with React, Next.js, and Flutter, and connect them to backend APIs, so the final product works the way it was designed.
               </p>
             </div>
 
@@ -76,24 +74,31 @@ export default function About() {
 
               <div className="sm:col-span-3 glass-card rounded-2xl border border-gray-100 divide-y divide-gray-100">
                 <div className="flex items-center gap-3 p-3.5">
+                  <Trophy className="w-4 h-4 text-[#FFB4A2] shrink-0" />
+                  <div>
+                    <p className="text-sm font-poppins font-bold text-gray-900 leading-tight">Award-Winning Project</p>
+                    <p className="text-xs text-gray-500">GuardianWalk: Gold Medal at IIIEX 2026 & 1st Place at KMIPN VIII 2026</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 p-3.5">
                   <Palette className="w-4 h-4 text-[#FFB4A2] shrink-0" />
                   <div>
-                    <p className="text-sm font-poppins font-bold text-gray-900 leading-tight">UI/UX Specialist</p>
-                    <p className="text-xs text-gray-500">Deep research, wireframing & custom interfaces</p>
+                    <p className="text-sm font-poppins font-bold text-gray-900 leading-tight">UI/UX Design</p>
+                    <p className="text-xs text-gray-500">User flows, wireframes & prototypes in Figma</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-3.5">
                   <Cpu className="w-4 h-4 text-[#7EC8FF] shrink-0" />
                   <div>
-                    <p className="text-sm font-poppins font-bold text-gray-900 leading-tight">Front-End Developer</p>
-                    <p className="text-xs text-gray-500">Figma layers into clean React & Flutter setups</p>
+                    <p className="text-sm font-poppins font-bold text-gray-900 leading-tight">Front-End Development</p>
+                    <p className="text-xs text-gray-500">Figma designs into responsive React, Next.js & Flutter interfaces</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3 p-3.5">
                   <Award className="w-4 h-4 text-[#FFB4A2] shrink-0" />
                   <div>
                     <p className="text-sm font-poppins font-bold text-gray-900 leading-tight">BNSP Certified</p>
-                    <p className="text-xs text-gray-500">Official multimedia & interface designer credentials</p>
+                    <p className="text-xs text-gray-500">Intermediate Multimedia Designer competency</p>
                   </div>
                 </div>
               </div>

@@ -37,11 +37,11 @@ export const SKILL_CATEGORIES = [
   },
   {
     title: "Development Tools",
-    skills: ["HTML5", "CSS3", "JavaScript", "React", "TypeScript", "Tailwind CSS", "SQLite", "Flutter", "Python", "Firebase"],
+    skills: ["HTML5", "CSS3", "JavaScript", "TypeScript", "React", "Next.js", "Tailwind CSS", "Payload CMS", "REST API Integration", "Flutter", "Python", "Firebase", "SQLite"],
   },
   {
     title: "Methodologies",
-    skills: ["User-Centered Design", "Wireframing & Prototyping", "Design System", "REST API Integration", "Agile"],
+    skills: ["User-Centered Design", "Wireframing & Prototyping", "Design System", "Agile"],
   },
   {
     title: "Technical Skills",
@@ -142,11 +142,91 @@ export const ORGANIZATION_HISTORY = [
 
 export const PROJECTS: Project[] = [
   {
+    id: "guardianwalk",
+    title: "GuardianWalk",
+    category: "IoT & Mobile Application",
+    tools: ["ESP32", "MPU6050", "SIM808 GPS/GSM", "Flutter", "Firebase", "Figma"],
+    highlight: "IoT-based smart walker with real-time fall detection and caregiver monitoring for elderly safety — Gold Medal at IIIEX 2026 and 1st Place at KMIPN VIII 2026.",
+    imageAccent: "from-[#C8B6FF]/30 to-[#DDF1FF]",
+    iconName: "shield",
+    thumbnail: guardianwalkImg,
+    filterGroup: "fullstack",
+    githubUrl: "https://github.com/MilaDewii/smart_walker_monitoring.git",
+    figmaUrl: "https://www.figma.com/design/Jc9f1g9rWXSQki6vb3tmCw/Tugas-Akhir?node-id=245-1921&t=dw09EaEG9QRkhYF6-1",
+    caseStudy: {
+      problemStatement:
+        "Elderly individuals living independently or with limited caregiver supervision face high risks from unnoticed falls and disorientation while walking. Conventional walkers offer no way to detect a fall, alert a caregiver, or track location in real time, leaving critical minutes lost during emergencies.",
+      userResearch:
+        "We tested GuardianWalk directly with 10 elderly respondents aged 55-79, gathering satisfaction feedback through a questionnaire (kuesioner) rather than relying only on simulated data. The results scored 93.3% ('Sangat Baik'). The design also prioritised SMS alerts that work without an internet connection, since app notifications alone can be missed when a caregiver isn't looking at their phone.",
+      userPersona: {
+        name: "Ibu Sumiyati",
+        role: "Elderly Walker User, Lives With Family Caregiver",
+        age: 68,
+        quote: "I don't want to feel like a burden by calling my daughter every time I feel unsteady, but I also don't want a fall to go unnoticed.",
+        behaviors: ["Uses a walker daily around the house and yard.", "Lives with an adult child who works during the day.", "Occasionally forgets to bring her phone with her."],
+        goals: ["Feel safe walking alone without constant supervision.", "Have falls detected and reported automatically.", "Let her caregiver check her location if she doesn't return on time."],
+        painPoints: ["Falls at home often go unnoticed for a long time.", "Feels guilty asking family to check on her constantly.", "Existing wearable alert devices are uncomfortable or easy to forget to wear."],
+        avatarSeed: "elderly_woman_walker",
+      },
+      userFlow: {
+        steps: [
+          { title: "Power On Walker", description: "ESP32 initializes sensors (MPU6050, dual HC-SR04) and connects to Firebase.", type: "start" },
+          { title: "Continuous Monitoring", description: "Motion, tilt, and distance data streamed and evaluated in real time.", type: "action" },
+          { title: "Fuzzy Risk Evaluation", description: "Fuzzy Logic Mamdani calculates fuzzy_risk score; Z-Score anomaly detection runs as a separate check.", type: "decision" },
+          { title: "WASPADA Alert", description: "fuzzy_risk 0.30-0.44 triggers an app notification only, no buzzer.", type: "action" },
+          { title: "DARURAT Alert", description: "fuzzy_risk above 0.45 (or prolonged stillness over 30s) triggers buzzer, app alert, and SMS via SIM808 to caregiver.", type: "end" },
+        ],
+      },
+      wireframes: [
+        {
+          title: "Flutter App Screen Structure",
+          items: ["Monitoring screen: live status, risk level indicator, GPS position", "History screen: timestamp-based event log with online/offline SQLite sync", "Profile & Settings: caregiver contact, device pairing, alert thresholds"],
+        },
+      ],
+      designSystem: {
+        colors: [
+          { name: "Primary Blue", hex: "#1E3A8A", desc: "Main brand color, used for headers and navigation elements." },
+          { name: "Secondary Blue", hex: "#3B82F6", desc: "Interactive accent for buttons and clickable elements." },
+          { name: "Background", hex: "#F8FAFC", desc: "Base app background color." },
+          { name: "Text Dark", hex: "#1F2937", desc: "Primary text color for headings and body copy." },
+          { name: "Text Grey", hex: "#6B7280", desc: "Secondary text color for labels and less prominent copy." },
+          { name: "Status Green (Safe)", hex: "#22C55E", desc: "Indicates safe/normal status when no risk is detected." },
+          { name: "Status Yellow (Warning)", hex: "#F59E0B", desc: "Indicates WASPADA status at moderate risk." },
+          { name: "Status Red (Danger)", hex: "#EF4444", desc: "Indicates DARURAT status at high risk." },
+        ],
+        typography: [{ name: "App Interface Typography", font: "Poppins", usage: "Status labels and readable alert text for family caregivers of all ages." }],
+        components: ["Real-time risk status card", "Fall event history list with sync indicator", "Caregiver contact & geofence settings panel"],
+      },
+      finalScreens: {
+        title: "GuardianWalk Companion App",
+        description: "A Flutter-based caregiver app showing live walker status, fall history, and location built to stay usable offline and sync automatically once reconnected.",
+        accent: "bg-[#3B82F6]/10",
+        mockupType: "mobile",
+        screens: [
+          { name: "Live Monitoring Dashboard", feat: ["Real-time risk level status", "GPS location on map", "Connection indicator"] },
+          { name: "Fall & Activity History", feat: ["Timestamp-matched event log", "Offline SQLite caching with auto-sync", "Step counter records"] },
+          { name: "Caregiver Alert Settings", feat: ["Geofence radius configuration", "SMS fallback contact setup", "Notification threshold controls"] },
+        ],
+      },
+      developmentProcess: [
+        "Designed and calibrated Fuzzy Logic Mamdani rules for fall detection, keeping Z-Score anomaly detection as an independent verification layer.",
+        "Built firmware on ESP32 integrating MPU6050 motion sensing, dual HC-SR04 distance sensors, and SIM808 GPS/GSM for SMS fallback alerts.",
+        "Developed the Flutter app: notification system, history screen with SQLite offline caching and online sync, step counter using rising-edge detection, and redesigned ERD with user_id foreign keys.",
+        "Fixed real-world firmware issues including a Firebase PATCH overwrite bug on geofence data, rear ultrasonic sensor instability, and GNSS pause/resume race conditions.",
+        "Validated the system with 10 real elderly users (ages 55-79), achieving a 93.3% satisfaction score.",
+      ],
+      lessonsLearned: [
+        "For safety-critical IoT devices, an SMS fallback is essential: Wi-Fi/app notifications alone aren't reliable enough when a caregiver isn't looking at their phone.",
+        "Testing with real elderly users surfaced usability needs that simulated data never would have, such as offline-first history so nothing gets lost when connectivity drops.",
+      ],
+    },
+  },
+  {
     id: "pos-app",
     title: "POS Web Application",
     category: "UI/UX Design & Fullstack Web Development",
-    tools: ["Figma", "HTML5", "CSS3", "JavaScript", "REST API", "PHP & MySQL"],
-    highlight: "Designed and implemented a complete point of sale system for multi-outlet retail.",
+    tools: ["Figma", "Next.js", "TypeScript", "Payload CMS", "REST API", "Tailwind CSS"],
+    highlight: "UI design and front-end development for a multi-outlet point of sale web app, built with a team during an internship.",
     imageAccent: "from-[#A7D8FF] to-[#DDF1FF]",
     iconName: "shopping-bag",
     thumbnail: posmindImg,
@@ -154,7 +234,7 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/naelasyifa/POSMind.git",
     figmaUrl: "https://www.figma.com/design/JtjunLOXmSVVkAVpfVI1EX/Projek-DAU?node-id=18-735&t=EHOBkS2niSOyyeMh-1",
     simpleSummary:
-      "A complete point of sale system built for multi-outlet retail, covering the checkout flow, inventory tracking, and payment handling end to end. Designed in Figma and implemented as a full-stack web app during a professional internship.",
+      "POSMind is a point of sale web application for multi-outlet retail, built by a team during my internship at PT Data Andalan Utama. My contributions covered the Figma UI design, Tailwind CSS front-end layouts, and pages for user management, payment methods, and registration, plus an improved login flow with OTP verification and password reset, all connected to backend APIs in a Next.js, TypeScript, and Payload CMS project.",
     keyFeatures: ["Fast checkout flow with QRIS, credit card, and cash payment options", "Real-time inventory tracking across outlets", "Discount and loyalty voucher support", "Responsive dashboard with category filtering"],
   },
   {
@@ -214,85 +294,5 @@ export const PROJECTS: Project[] = [
     githubUrl: "https://github.com/Iniwizzy/larva_land",
     simpleSummary: "An educational mobile mini-game collection built in Unity, featuring three short games — Nusa Music, Larva Spike, and Larva Bites — designed to make insect lifecycle concepts more engaging for young learners.",
     keyFeatures: ["Three distinct mini-games in one package", "Simple, icon-based UI for young players", "Score tracking and progress badges", "Built with Unity 3D and C#"],
-  },
-  {
-    id: "guardianwalk",
-    title: "GuardianWalk",
-    category: "IoT & Mobile Application",
-    tools: ["ESP32", "MPU6050", "SIM808 GPS/GSM", "Flutter", "Firebase", "Figma"],
-    highlight: "IoT-based smart walker with real-time fall detection and caregiver monitoring for elderly safety — IIIEX Competition Winner.",
-    imageAccent: "from-[#C8B6FF]/30 to-[#DDF1FF]",
-    iconName: "shield",
-    thumbnail: guardianwalkImg,
-    filterGroup: "fullstack",
-    githubUrl: "https://github.com/MilaDewii/smart_walker_monitoring.git",
-    figmaUrl: "https://www.figma.com/design/Jc9f1g9rWXSQki6vb3tmCw/Tugas-Akhir?node-id=245-1921&t=dw09EaEG9QRkhYF6-1",
-    caseStudy: {
-      problemStatement:
-        "Elderly individuals living independently or with limited caregiver supervision face high risks from unnoticed falls and disorientation while walking. Conventional walkers offer no way to detect a fall, alert a caregiver, or track location in real time, leaving critical minutes lost during emergencies.",
-      userResearch:
-        "We tested GuardianWalk directly with 10 elderly respondents aged 55-79, gathering satisfaction feedback (kuesioner) rather than relying only on simulated data. The results scored 93.3% ('Sangat Baik'), and feedback confirmed caregivers wanted immediate SMS alerts even without an internet connection, not just in-app notifications.",
-      userPersona: {
-        name: "Ibu Sumiyati",
-        role: "Elderly Walker User, Lives With Family Caregiver",
-        age: 68,
-        quote: "I don't want to feel like a burden by calling my daughter every time I feel unsteady, but I also don't want a fall to go unnoticed.",
-        behaviors: ["Uses a walker daily around the house and yard.", "Lives with an adult child who works during the day.", "Occasionally forgets to bring her phone with her."],
-        goals: ["Feel safe walking alone without constant supervision.", "Have falls detected and reported automatically.", "Let her caregiver check her location if she doesn't return on time."],
-        painPoints: ["Falls at home often go unnoticed for a long time.", "Feels guilty asking family to check on her constantly.", "Existing wearable alert devices are uncomfortable or easy to forget to wear."],
-        avatarSeed: "elderly_woman_walker",
-      },
-      userFlow: {
-        steps: [
-          { title: "Power On Walker", description: "ESP32 initializes sensors (MPU6050, dual HC-SR04) and connects to Firebase.", type: "start" },
-          { title: "Continuous Monitoring", description: "Motion, tilt, and distance data streamed and evaluated in real time.", type: "action" },
-          { title: "Fuzzy Risk Evaluation", description: "Fuzzy Logic Mamdani calculates fuzzy_risk score; Z-Score anomaly detection runs as a separate check.", type: "decision" },
-          { title: "WASPADA Alert", description: "fuzzy_risk 0.30-0.44 triggers an app notification only, no buzzer.", type: "action" },
-          { title: "DARURAT Alert", description: "fuzzy_risk above 0.45 (or prolonged stillness over 30s) triggers buzzer, app alert, and SMS via SIM808 to caregiver.", type: "end" },
-        ],
-      },
-      wireframes: [
-        {
-          title: "Flutter App Screen Structure",
-          items: ["Monitoring screen: live status, risk level indicator, GPS position", "History screen: timestamp-based event log with online/offline SQLite sync", "Profile & Settings: caregiver contact, device pairing, alert thresholds"],
-        },
-      ],
-      designSystem: {
-        colors: [
-          { name: "Primary Blue", hex: "#1E3A8A", desc: "Main brand color, used for headers and navigation elements." },
-          { name: "Secondary Blue", hex: "#3B82F6", desc: "Interactive accent for buttons and clickable elements." },
-          { name: "Background", hex: "#F8FAFC", desc: "Base app background color." },
-          { name: "Text Dark", hex: "#1F2937", desc: "Primary text color for headings and body copy." },
-          { name: "Text Grey", hex: "#6B7280", desc: "Secondary text color for labels and less prominent copy." },
-          { name: "Status Green (Safe)", hex: "#22C55E", desc: "Indicates safe/normal status when no risk is detected." },
-          { name: "Status Yellow (Warning)", hex: "#F59E0B", desc: "Indicates WASPADA status at moderate risk." },
-          { name: "Status Red (Danger)", hex: "#EF4444", desc: "Indicates DARURAT status at high risk." },
-        ],
-        typography: [{ name: "App Interface Typography", font: "Poppins", usage: "Status labels and readable alert text for family caregivers of all ages." }],
-        components: ["Real-time risk status card", "Fall event history list with sync indicator", "Caregiver contact & geofence settings panel"],
-      },
-      finalScreens: {
-        title: "GuardianWalk Companion App",
-        description: "A Flutter-based caregiver app showing live walker status, fall history, and location built to stay usable offline and sync automatically once reconnected.",
-        accent: "bg-[#3B82F6]/10",
-        mockupType: "mobile",
-        screens: [
-          { name: "Live Monitoring Dashboard", feat: ["Real-time risk level status", "GPS location on map", "Connection indicator"] },
-          { name: "Fall & Activity History", feat: ["Timestamp-matched event log", "Offline SQLite caching with auto-sync", "Step counter records"] },
-          { name: "Caregiver Alert Settings", feat: ["Geofence radius configuration", "SMS fallback contact setup", "Notification threshold controls"] },
-        ],
-      },
-      developmentProcess: [
-        "Designed and calibrated Fuzzy Logic Mamdani rules for fall detection, keeping Z-Score anomaly detection as an independent verification layer.",
-        "Built firmware on ESP32 integrating MPU6050 motion sensing, dual HC-SR04 distance sensors, and SIM808 GPS/GSM for SMS fallback alerts.",
-        "Developed the Flutter app: notification system, history screen with SQLite offline caching and online sync, step counter using rising-edge detection, and redesigned ERD with user_id foreign keys.",
-        "Fixed real-world firmware issues including a Firebase PATCH overwrite bug on geofence data, rear ultrasonic sensor instability, and GNSS pause/resume race conditions.",
-        "Validated the system with 10 real elderly users (ages 55-79), achieving a 93.3% satisfaction score.",
-      ],
-      lessonsLearned: [
-        "For safety-critical IoT devices, an SMS fallback is essential Wi-Fi/app notifications alone aren't reliable enough when a caregiver isn't looking at their phone.",
-        "Testing with real elderly users surfaced usability needs that simulated data never would have like offline-first history so nothing gets lost when connectivity drops.",
-      ],
-    },
   },
 ];
